@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Ubuntu
+image: image: Visual Studio 2022
 environment:
   nodejs_version: '20'
 install:
