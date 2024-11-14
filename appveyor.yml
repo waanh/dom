@@ -14,7 +14,8 @@ artifacts:
   - path: ./dist
 deploy:
   provider: GitHubPages
-  artifact: dist
+  token: %GITHUB_TOKEN%
   force_update: true
+  artifact: dist
   on:
     branch: main
