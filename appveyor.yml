@@ -12,3 +12,9 @@ test_script:
   - npm test
 artifacts:
   - path: ./dist
+deploy:
+  provider: GitHubPages
+  artifact: dist
+  force_update: true
+  on:
+    branch: main

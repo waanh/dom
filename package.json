@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start": "webpack serve --open",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --mode production",
     "lint": "eslint .",
     "deploy": "gh-pages -d dist"
   },

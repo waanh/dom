@@ -1,3 +1,5 @@
+import goblinImgSrc from './goblin.png';
+
 export default class Game {
     constructor(boardElement) {
       this.boardElement = boardElement;
@@ -32,7 +34,7 @@ export default class Game {
       this.activeCell = this.cells[newIndex];
   
       const goblinImg = document.createElement('img');
-      goblinImg.src = './goblin.png';
+      goblinImg.src = goblinImgSrc;
       goblinImg.classList.add('goblin');
       this.activeCell.appendChild(goblinImg);
     }
