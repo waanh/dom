@@ -19,5 +19,7 @@ after_build:
       robocopy .\dist\ deploy /MIR
       Push-Location deploy
       git add .
-      git commit -m "Appveyor deploy [skip ci]" || exit 0
+      if ((git commit -m "Appveyor deploy [skip ci]").ExitCode -ne 0) {
+        Write-Host "Nothing to commit, skipping."
+      }
       git push origin gh-pages
