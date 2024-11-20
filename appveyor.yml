@@ -9,8 +9,6 @@ build_script:
   - npm run build
 test_script:
   - npm test
-artifacts:
-  - path: ./dist
 deploy:
   provider: GitHubPages
   token: "$(GITHUB_TOKEN)"
