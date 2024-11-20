@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "lint": "eslint .",
