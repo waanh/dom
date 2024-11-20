@@ -9,10 +9,15 @@ build_script:
   - npm run build
 test_script:
   - npm test
-deploy:
-  provider: GitHubPages
-  token: "$(GITHUB_TOKEN)"
-  force_update: true
-  artifact: dist
-  on:
-    branch: main
+artifacts:
+  - path: ./dist
+after_build:
+  - ps: |
+      git config --global user.email "your-email@example.com"
+      git config --global user.name "Your Name"
+      git clone --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/your-username/your-repository.git deploy
+      robocopy .\dist\ deploy /MIR
+      Push-Location deploy
+      git add .
+      git commit -m "Appveyor deploy [skip ci]" || exit 0
+      git push origin gh-pages
