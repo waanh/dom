@@ -22,4 +22,4 @@ after_build:
       if ((git commit -m "Appveyor deploy [skip ci]").ExitCode -ne 0) {
         Write-Host "Nothing to commit, skipping."
       }
-      git push origin main
+      git push https://$env:GITHUB_TOKEN@github.com/waanh/dom.git main
