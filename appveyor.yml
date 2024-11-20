@@ -13,13 +13,13 @@ artifacts:
   - path: ./dist
 after_build:
   - ps: |
-      git config --global user.email "your-email@example.com"
+      git config --global user.email "you@example.com"
       git config --global user.name "Your Name"
-      git clone --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/your-username/your-repository.git deploy
-      robocopy .\dist\ deploy /MIR
-      Push-Location deploy
+      git clone https://$env:GITHUB_TOKEN@github.com/waanh/dom.git repo
+      robocopy .\dist\ repo /MIR
+      Push-Location repo
       git add .
       if ((git commit -m "Appveyor deploy [skip ci]").ExitCode -ne 0) {
         Write-Host "Nothing to commit, skipping."
       }
-      git push origin gh-pages
+      git push origin main
