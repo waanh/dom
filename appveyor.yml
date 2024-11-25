@@ -1,25 +1,27 @@
-version: 1.0.{build}
-image: Visual Studio 2022
-environment:
-  nodejs_version: '20'
+image: Ubuntu1804
+
+stack: node 16  
+
+branches:
+  only:
+    - master 
+
+cache: node_modules  
+
 install:
-  - ps: Install-Product node $env:nodejs_version
-  - npm install
+  - npm install  
+
+build: off  
+
 build_script:
-  - npm run build
+  - npm run build 
+
 test_script:
-  - npm test
-artifacts:
-  - path: ./dist
-after_build:
-  - ps: |
-      git config --global user.email "you@example.com"
-      git config --global user.name "Your Name"
-      git clone https://$env:GITHUB_TOKEN@github.com/waanh/dom.git repo
-      robocopy .\dist\ repo /MIR
-      Push-Location repo
-      git add .
-      if ((git commit -m "Appveyor deploy [skip ci]").ExitCode -ne 0) {
-        Write-Host "Nothing to commit, skipping."
-      }
-      git push https://$env:GITHUB_TOKEN@github.com/waanh/dom.git main
+  - npm run lint && npm test  
+
+deploy_script: 
+  - git config --global credential.helper store
+  - git config --global user.name AppVeyor
+  - git config --global user.email ci@appveyor.com
+  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
+  - npx push-dir --dir=dist --branch=gh-pages --force --verbose
