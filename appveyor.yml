@@ -4,7 +4,7 @@ stack: node 18
 
 branches:
   only:
-    - master 
+    - main 
 
 cache: node_modules  
 
