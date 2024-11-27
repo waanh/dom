@@ -2,6 +2,7 @@
   "name": "dom",
   "version": "1.0.0",
   "main": "webpack.config.js",
+  "homepage": "https://waanh.github.io/dom",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
     "start": "webpack serve --mode development",
